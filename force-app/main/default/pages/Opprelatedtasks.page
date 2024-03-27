@@ -1,0 +1,17 @@
+<apex:page standardController="Opportunity" extensions="OpportunityCaseController">
+
+    <apex:form >
+        <apex:pageBlock title="Create Case Related to Opportunity">
+            <apex:pageBlockSection >
+                <apex:inputField value="{!Opportunity.AccountId}" rendered="{!isAccountEditable}" required="true"/>
+                <apex:outputField value="{!Opportunity.Account.Name}" rendered="{!isAccountNotEditable}"/>
+                <apex:inputField value="{!newCase.Subject}" required="true"/>
+                <apex:inputField value="{!newCase.Priority}" required="true"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!createCase}" value="Create Case"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+
+</apex:page>

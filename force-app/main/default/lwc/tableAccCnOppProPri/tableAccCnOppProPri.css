@@ -1,0 +1,21 @@
+.slds-scrollable-table {
+    max-height: 300px; /* Adjust this value as needed */
+    overflow-y: auto;
+}
+.tablecls {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+.tablecls td,
+.tablecls th {
+    padding: 8px;
+}
+.tablecls th {
+    padding-top: 5px;
+    padding-bottom: 9px;
+    text-align: left;
+}
+.Color{
+    background-color: #dceaf5;
+}

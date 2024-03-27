@@ -1,0 +1,66 @@
+<template>
+   
+        <lightning-button label="Agent payment flow" variant=brand onclick={handlebutton} class="firstbutton"></lightning-button>
+   
+   <template if:true={popup}>
+    <div class="slds-modal slds-fade-in-open slds-backdrop">  
+        <div class="slds-modal__container">
+            <div class="slds-modal__header">
+                <lightning-button-icon icon-name="utility:close" alternative-text="Close this window" size="large"  
+             variant="bare-inverse" onclick={closeModal} class="slds-modal__close">  
+             </lightning-button-icon> 
+             <h2 style="font-size: larger;">Retry Payments</h2>
+            </div>
+            <div class="slds-modal__content">
+              <div class="box"> 
+                <p class="slds-input-has-icon slds-input-has-icon_left">
+                <lightning-icon  icon-name="utility:info" size="xx-small" style="padding: 10px;"></lightning-icon>To retry payments Customer must have credit card as thier payment method
+              </p>
+              </div>
+              <h2 class="section">what does the customer want to do?</h2>
+              <div>
+                <lightning-input label="Pay now"  class="paynow" name="radio" type="radio"  checked={payNowChecked} onchange={handlevalidation}></lightning-input>
+                <p style="padding-left: 24px;">Retry failed payment subscriptions,sale orders and add ones</p>
+                <lightning-input label="Pay later"  class="paylater" name="radio" type="radio"  checked={payLaterChecked}  onchange={handlevalidation}></lightning-input>
+                <p style="padding-left:24px;">Subscription ONLY -Schedule a new date for failed payments</p>
+              </div>
+              <div class="errorClass" if:true={showError}>
+                Please select an option.
+
+            </div>
+             
+            <!--<lightning-radio-group 
+              class="checking"
+              name="existingCustomerRadioGroup" 
+              label="What does customer want to do ?"
+              options={existingCustomerRadioOptions}
+              value={selectedValue} required 
+              type="radio"
+              onchange={handlevalidation}
+              >
+            </lightning-radio-group>
+            <div class="errorClass" if:true={showError}>
+              Please select an option.
+          </div>-->
+            <!--<div>
+                <template for:each={existingCustomerRadioOptions} for:item="option">
+                  <div key={option.value} class="radio">
+                      <lightning-input  type="radio" label={option.label} value={option.value} required name="radioGroup" onchange={handleExistingCustomerChange}></lightning-input>
+                      <div class="additional-text">
+                          {option.text}
+                      </div>
+                  </div>
+              </template>
+          </div>-->
+          </div>
+          <div class="slds-modal__footer">
+            <lightning-button  label="Next" variant=brand onclick={handlenextbutton}></lightning-button>
+         </div>
+        </div>
+            
+        
+    </div>
+    
+</div>
+   </template>
+</template>

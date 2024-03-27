@@ -1,0 +1,17 @@
+.slds-box{
+    padding: 10px;
+    margin: 10px;
+}
+.symbol{
+    --slds-c-icon-color-background:blue;
+    padding-left: 20px;
+    
+}
+.step3{
+    padding: 10px;
+}
+.slds-form-element{
+    padding-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+}

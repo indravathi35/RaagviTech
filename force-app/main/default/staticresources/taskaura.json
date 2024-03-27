@@ -1,0 +1,85 @@
+{
+    "fields": 
+    [
+        {
+          "Name": "Concession Authority",
+          "Value": "Concession Authority",
+          "FieldType": "combobox"
+        },
+        {
+          "Name": "Card Type",
+          "Value": "Card Type",
+          "FieldType": "combobox"
+        },
+    
+        {
+          "Name": "CRN/File Number",
+          "Value": "CRN/File Number",
+          "FieldType": "text"
+        }
+      ],
+      
+       
+      "ConcessionAuthority":{
+        "authority":[
+          {
+            "label" : "CentreLink",
+            "value" : "CentreLink"
+          },
+          {
+            "label" : "Department_of_Veteran_Affairs",
+            "value" : "Department_of_Veteran_Affairs"
+          }]
+        },
+      "cardType":{
+        "CentreLink":[
+          {
+            "label" : "Pensionsers Concession Card",
+            "value" : "Pensionsers Concession Card"
+          },
+          {
+            "label" : "Health Care Card",
+            "value" : "Health Care Card"
+          },
+          {
+            "label" : "Commonwealth Seniors Health Card",
+            "value" : "Commonwealth Seniors Health Card"
+          },
+          {
+            "label" : "Low Income Card",
+            "value" : "Low Income Card"
+          }
+        ],
+        "Department_of_Veteran_Affairs": [
+          {
+            "label" : "Pensionsers Concession Card",
+            "value" : "Pensionsers Concession Card"
+          },
+          {
+            "label" : "Gold Card",
+            "value" : "Gold Card"
+          },
+          {
+            "label" : "Commonwealth Seniors Health Card",
+            "value" : "Commonwealth Seniors Health Card"
+          },
+          {
+            "label" : "MRCA White Card",
+            "value" : "MRCA White Card"
+          }
+        ]
+      },
+      
+  "ErrorConcessionAuthority": "Please Select Concession Authority Value",
+  "ErrorConcessionType": "Please Select Concession Type Value",
+  "ErrorCrnNumber": "Please Select CRN Number Value",
+  "ErrorPensionsersConcessionCardt" : "Please enter a valid File Number for a DVA Pensionsers Concession Card (8 0r 9 alphanumeric characters eg: QSM123456)",
+  "ErrorCommonwealthSeniorsHealthCardt" : "Please enter a valid File Number for a DVA Commonwealth Seniors Health Card (8 0r 9 alphanumeric characters eg: QSM123456)",
+  "ErrorGoldCard" : "Please enter a valid File Number for a DVA Gold Card (8 0r 9 alphanumeric characters eg: QSM123456)",
+  "ErrorMRCAWhiteCard" : "Please enter a valid File Number for a DVA MRCA White Card (8 0r 9 alphanumeric characters eg:  QSM123456)",
+  "ErrorHealthCareCard" :  "Please enter a valid File Number for a CRN Health Care Card (9 numeric characters + 1 alphabetical characters eg: 123456789A)",
+  "ErrorLowIncomeCard" :  "Please enter a valid File Number for a CRN Low Income Card (9 numeric characters + 1 alphabetical characters eg: 123456789A)",
+  "ErrorPensionsersConcessionCard" : "Please enter a valid File Number for a  Pensionsers Concession Card (9 numeric characters + 1 alphabetical characters eg: 123456789A)",
+  "ErrorCommonwealthSeniorsHealthCard" : "Please enter a valid File Number for a  Commonwealth Seniors Health Card (9 numeric characters + 1 alphabetical characters eg: 123456789A)"
+ 
+}

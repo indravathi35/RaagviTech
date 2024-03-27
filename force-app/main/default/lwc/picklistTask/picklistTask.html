@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Lwc COmponent">
+     <template for:each={pickArray} for:item="field">
+     <div key={field.Name}>  
+    <lightning-combobox  
+    label={field.Name} 
+    value={field.value}
+    data-fieldname={field.Name}
+    options={field.options} 
+    onchange={handleChange} > 
+  </lightning-combobox> 
+      </div>
+     </template>
+       
+    
+    </lightning-card>
+    
+</template>

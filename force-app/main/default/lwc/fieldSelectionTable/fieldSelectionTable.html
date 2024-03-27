@@ -1,0 +1,43 @@
+
+<template>
+  <lightning-card>
+  <div class="slds-combobox_container">
+      <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open" aria-expanded="true" aria-haspopup="listbox" role="combobox" onmouseleave={handleMouseOut}  >
+          <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none" style="padding-left: 10px; padding: botom 0%;">
+              <lightning-input class="inputBox" placeholder="Select an Option"  onclick={showOptions}  onchange={handleSearchChange} value={searchKey}  variant="label-hidden" id="combobox-id-1"></lightning-input>
+              <lightning-icon class="slds-input__icon" icon-name="utility:down" size="x-small" alternative-text="downicon"></lightning-icon>
+          </div>
+          <template if:true={showDropdown}>
+              <div id="listbox-id-1" class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid">
+                  <ul class="slds-listbox slds-listbox_vertical recordListBox" role="presentation">
+                      <template for:each={filteredOptions} for:item="option">
+                          <li key={option.value} data-id={option.value} onmousedown={selectItem} class="slds-listbox__item eachItem">
+                              <span class="slds-media slds-listbox__option_entity verticalAlign slds-truncate"><template if:true={option.selected}>
+                                <lightning-icon icon-name="utility:check" size="x-small" alternative-text="icon"></lightning-icon>
+                            </template>{option.label}</span>
+                          </li>
+                      </template>
+                  </ul>
+              </div>
+          </template>
+      </div>
+  </div>
+  <template for:each={values} for:item="value">
+      <lightning-pill label={value} key={value} name={value} onremove={closePill}></lightning-pill>
+  </template>
+  <div style="text-align: right; padding:20px">
+  <lightning-button style="padding-right: 10px;" label="Save" onclick={handleSave}></lightning-button>
+  <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+</div>
+<template if:true={table}>
+  <div style="height: 300px;">
+    <lightning-datatable
+            key-field="Id"
+            data={datatable}
+            columns={columns}
+            onsave={handleEditSave}>
+    </lightning-datatable>
+</div>
+</template>
+</lightning-card>
+</template>

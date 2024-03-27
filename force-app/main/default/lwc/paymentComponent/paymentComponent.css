@@ -1,0 +1,47 @@
+.box{
+    
+    height: 72px;
+    border-radius: 5px;
+    background-color: #f3f7fd;
+    padding: 17px;
+    margin-bottom:25px;
+    padding-right: 17px;
+
+}
+
+.slds-modal__header{
+    padding: 12px;
+}
+.slds-modal__content{
+    padding:12px;
+}
+.checking{
+    margin-left: 17px;
+    
+}
+.slds-modal__footer{
+    padding:12px;
+}
+.errorClass{
+    color: red;
+
+
+}
+
+.section{
+    font-weight: bold;
+    padding-top: 8px;
+}
+.paynow{
+    font-weight: bold;
+    padding-top: 10px;
+    
+}
+.paylater{
+    font-weight:bold;
+    padding-top: 10px;
+    
+}
+.redradio{
+    --slds-c-radio-color-border:red;
+}

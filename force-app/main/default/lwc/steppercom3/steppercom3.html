@@ -1,0 +1,133 @@
+<template>
+    <lightning-card>
+        <h3 >Address Of User :-<span style="color: blue;">{ad}</span></h3>
+    <lightning-progress-indicator current-step={currentStep} type="base" variant="base">
+        <lightning-progress-step label="Step 1" value="1" onclick={handleOnStepClick}></lightning-progress-step>
+        <lightning-progress-step label="Step 2" value="2" onclick={handleOnStepClick}></lightning-progress-step>
+        <lightning-progress-step label="Step 3" value="3" onclick={handleOnStepClick}></lightning-progress-step>
+        <lightning-progress-step label="Step 4" value="4" onclick={handleOnStepClick}></lightning-progress-step>
+        <lightning-progress-step label="Step 5" value="5" onclick={handleOnStepClick}></lightning-progress-step>
+    </lightning-progress-indicator>
+    
+    <template if:true={isStepOne}>
+        <div>
+            <h2 style="font-weight: bold; padding: 10px;">Case Number</h2>
+        </div>
+        <div class="slds-box">
+        <lightning-combobox id="select"
+            name="cses"
+            label="Case Number associated with this registration"
+            placeholder="Choose Case"
+            value={value}
+            required
+            onchange={handleChange}
+            
+            options={dropdownOptions}>
+            
+        </lightning-combobox>
+        </div>
+    </template>
+    <template if:true={isStepTwo}>
+        <div style="padding-left: 20px;">
+            <h2 style="font-weight: bold;">Residents(s) on Life Support</h2>
+            <p style="font-weight: bold;"> Specify Resident(s) using life support Equipment Electricity</p>
+            <p>Contact listed on Account</p>
+            <div class="slds-box">  
+                <lightning-datatable  
+                data={conList} columns={cols}
+                onrowselection={handleRowSelection} key-field="Id">  
+                </lightning-datatable>  
+              </div> 
+              
+        </div>
+        <p style="font-weight: bold;">Other Resident(s) not listed on this Account using life support</p>
+        <div class="slds-box">  
+            <lightning-datatable  
+            data={altconList} columns={cols} key-field="Id" 
+            onrowselection={handleselectcheck}>
+            </lightning-datatable>  
+          </div> 
+          <lightning-button style="padding-bottom: 500px;"  label="Add Resident" onclick={handleaddresident}></lightning-button>
+          
+         
+    </template>
+    <template if:true={isStepThree}>
+        <div class="step3">
+            <h2 style="font-weight: bold;padding-bottom: 10px;">Life Support Contact-Electricity</h2>
+            <p style="padding-bottom: 10px;">To nominate someone other than themself to be a LifeSupport Contact the customer need to do the following:</p>
+            <p style="font-weight: bold; padding-bottom:10px">Read to the customer</p>
+            <div class="symbol">
+            <lightning-icon style="--slds-c-icon-color-foreground:white;"    icon-name="utility:quotation_marks" variant="brand" ></lightning-icon>
+            </div>
+            <p style="padding-bottom: 10px;">when you nominate a Life Support Contact ,Telstra and your distributor will treat them as the primary contact for managing your life support requirements (including completing the registration process and being notified of any outages that impact your energy). </p>
+            <p style="padding-bottom: 10px;">*We will email your nominee and ask them to accept your nomination as your Life Support Contact.</p>
+            <p style="padding-bottom: 10px;">*Once confirmed,we will continue to communicate electronically with your Life Support Conatact via the provided email address regarding matters related to your Life Support.</p>
+            <p style="padding-bottom: 10px;">More information will be provided to you after sign-up.</p>
+            <p style="font-weight: bold;padding-bottom:10px">Select a Life Support Contact</p>
+            <lightning-button style="padding-bottom: 20px;"    label="Contacts on this Account" variant="brand-OutLine" onclick={handleContacts}></lightning-button>
+            <lightning-button style="padding-bottom: 20px;" label="Alternative Contact" variant= "brand-OutLine" onclick={handleAlternateContact}></lightning-button>
+            <div if:true={conbut}>
+            <lightning-datatable  
+                data={selectedList} columns={cols}
+                 key-field="Id">  
+                </lightning-datatable>  
+            </div>
+            <div if:true={s3alt}>
+                <lightning-datatable  
+                data={selectcheck} columns={cols}
+                 key-field="Id">  
+                </lightning-datatable>  
+            </div>
+        </div>
+    </template>
+    <template if:true={isStepFour}>
+        <div class="slds-form-element">
+            <label style="font-weight: 400;" for="textarea-id-01">
+              Special Notes</label>
+            <textarea id="textarea-id-01"  class="slds-textarea"></textarea>
+            <p>Maximum 240 Characters</p>
+          </div>
+    </template>
+    <template if:true={isStepFive}>
+        <div>
+        <p class="slds-input-has-icon slds-input-has-icon_left">
+            <lightning-icon  class="succsymbol"    icon-name="utility:success" size="xx-small"   style="padding: 10px;"></lightning-icon>Life Support has been Successfully Updated
+          </p>
+          </div>
+    </template>
+    <div slot="footer">
+    <template if:true={isEnablePrev}>
+        <lightning-button variant="base" label="Back" onclick={handlePrev}></lightning-button>
+    </template>
+    
+    <template if:true={isEnableNext}>
+        <lightning-button label="Next"  variant="brand" onclick={handleNext}></lightning-button>
+    </template>
+    <template if:true={isEnableFinish}>
+        <lightning-button label="Finish"  variant="brand" onclick={handleFinish}></lightning-button>
+    </template>
+    
+</div>
+</lightning-card>
+
+<template if:true={altcon}>
+    <div class="slds-modal slds-fade-in-open slds-backdrop">
+        <lightning-button-icon icon-name="utility:close" alternative-text="Close this window" size="large"  
+             variant="bare-inverse" onclick={closeModal} class="slds-modal__close">  
+             </lightning-button-icon>
+    <lightning-card>
+        <h1 class="headerbutton">Create Record</h1>
+        <div class="slds-m-around_medium">
+            <lightning-input label="FirstName" onchange={handleFirstName} pattern="[a-z]*" message-when-pattern-mismatch="Please enter a valid first name" class="validate"></lightning-input>
+            <lightning-input label="LastName" onchange={handleLastName} pattern="[a-z]*" message-when-pattern-mismatch="Please enter a valid LastName" class="validate"></lightning-input>
+            <lightning-input label="Email" onchange={handleEmailChange} class="slds-m-bottom_x-small"  ></lightning-input>
+            <lightning-input label="Phone" onchange={handlePhone} pattern="[0-9]{10}$" message-when-pattern-mismatch="Please enter a valid phone number" class="validate"></lightning-input>
+            
+            <lightning-button label="Submit" onclick={handleSubmit} style="padding:20px"></lightning-button>
+    
+        </div>
+    </lightning-card>
+</div>
+
+</template>
+</template>

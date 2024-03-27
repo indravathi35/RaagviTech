@@ -1,0 +1,13 @@
+.cold-bg {
+    background-color: #3498db; 
+    color: white;
+}
+
+.moderate-bg {
+    background-color: #f1c40f; 
+    color: black;
+}
+
+.hot-bg {
+    background-color: #e74c3c; 
+}

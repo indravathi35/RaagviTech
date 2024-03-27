@@ -1,0 +1,15 @@
+<!-- accountRelatedContacts.html -->
+<template>
+    <lightning-card title="Account Related Contacts" icon-name="standard:contact">
+        <lightning-datatable
+            key-field="Id"
+            data={contacts.data}
+            columns={columns}
+            onsave={handleSave}
+            draft-values={draftValues}
+            hide-checkbox-column:true
+            onrowaction={handleRowAction}
+        >
+        </lightning-datatable>
+    </lightning-card>
+</template>

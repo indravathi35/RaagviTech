@@ -1,0 +1,7 @@
+<template>
+    <lightning-card title="RelatedContacts">
+    <lightning-datatable key-field="id" data={contacts.data} columns={columns} onsave={handleSave}
+        draft-values={draftValues}>
+    </lightning-datatable>
+    </lightning-card>
+</template>

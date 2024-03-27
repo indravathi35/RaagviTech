@@ -1,0 +1,11 @@
+.THIS
+{
+        --slds-c-input-radius-border: 0px;
+}
+.THIS .Button 
+{
+    background-color: orange;
+    color: black;
+    border-radius: 10px;
+    border-color: black;
+}

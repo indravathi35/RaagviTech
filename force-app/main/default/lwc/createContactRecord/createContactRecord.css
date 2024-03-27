@@ -1,0 +1,9 @@
+.headerbutton{
+    text-align: center;
+}
+.slds-modal__container
+{
+    width:fit-content;
+
+    padding: auto;
+}

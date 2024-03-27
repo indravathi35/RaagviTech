@@ -1,0 +1,12 @@
+.custom-container{
+    display: flex;
+    flex: auto;
+    
+    
+}
+.custom-field2{ 
+   padding-left: 100px;
+}
+.selectTemplate{
+    text-align-last: left;
+}

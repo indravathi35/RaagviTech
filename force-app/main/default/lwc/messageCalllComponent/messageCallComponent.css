@@ -1,0 +1,12 @@
+.richtext{
+    margin-top: 15px;
+}
+.custom-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.custom-field {
+    padding-bottom: 16px;
+    width: 50%;
+    box-sizing: border-box;
+}

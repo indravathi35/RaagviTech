@@ -1,0 +1,50 @@
+<aura:component  implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="options" type="String[]" />
+    <aura:attribute name="concauth" type="String[]" />
+    <aura:attribute name="cardtype" type="String[]" />
+    <aura:attribute name="cardtype2" type="String[]" />
+    <aura:attribute name="selectedValue" type="String" />
+    
+    
+    <lightning:card class="addcss" >
+        <center><h1 style="font: bold;">AuraComponent</h1></center>
+        <div class="slds-p-around_medium slds-m-around_medium">
+        <lightning:combobox
+        label="{!v.options[0]}"
+        options="{!v.concauth}"
+        value="{!v.selectedValue}"
+    />
+    <aura:if isTrue="{!v.selectedValue == 'CentreLink'}">
+        <lightning:combobox
+            label="{!v.options[1]}"
+            options="{!v.cardtype}"
+            value="{!v.selectedValue}"
+            class="comb"
+        />
+    </aura:if>
+    <aura:if isTrue="{!v.selectedValue == 'Department of Veteran Affairs'}">
+        <lightning:combobox
+            label="{!v.options[1]}"
+            options="{!v.cardtype2}"
+            value="{!v.selectedValue}"
+            class="comb"
+        />
+    </aura:if>
+    <aura:if isTrue="{!and(v.selectedValue != 'CentreLink' , v.selectedValue != 'Department of Veteran Affairs')}">
+        <lightning:combobox
+            label="{!v.options[1]}"
+            options=""
+            value="{!v.selectedValue}"
+            class="comb"
+        />
+    </aura:if>
+    <lightning:input label="{!v.options[2]}"/>
+    <br/>
+    <div> 
+    <center><lightning:button  label="Save" variant="destructive" class="Button" /> </center>
+    </div>
+    </div> 
+ </lightning:card>
+    
+</aura:component>

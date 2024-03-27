@@ -1,0 +1,12 @@
+<template>
+    <lightning-card>
+    <lightning-input label="Enter Indian Currency" value={indiancurrencyval} onchange={handleinput}></lightning-input>
+    <lightning-radio-group name="radioGroup"
+                          label="Convert to"
+                          options={options}
+                          value={value}
+                          onchange={handleradiochange}
+                          type="radio">
+    </lightning-radio-group>
+</lightning-card>
+</template>

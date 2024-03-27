@@ -1,0 +1,257 @@
+<template>
+    <lightning-card>
+        <div class="slds-grid slds-p-around_medium">
+            <lightning-input type="search" label="Search" value={searchTerm} onchange={handleSearch} ></lightning-input>
+        </div>
+        <div style="text-align: right; padding-right: 10px; padding: bottom 20px;" >
+        <template if:true={expor}>
+            <lightning-button  label="Export" onclick={handleExport}></lightning-button>
+        </template> 
+    </div>
+        <template if:true={comp2}>
+            <c-sub-tableacc-con-opp-pro-price selected-account-details= {selectedAccountDetails}> </c-sub-tableacc-con-opp-pro-price>
+        </template>   
+        <div class="slds-scrollable-table">
+        <div>
+        <div style="font-size:medium;"><b>Account Details</b></div>
+       <table aria-multiselectable="true" class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered tablecls">
+        <thead>
+            <tr>  
+                <th class="" scope="col" >
+                    <div class="slds-truncate" style="display: flex; align-items: center;">
+                    <lightning-input type="checkbox" onchange={handleSelectAll} style="margin-left: 2px;" ></lightning-input>Name</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate">Phone</div>
+                </th>
+                <th class="" scope="col"></th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            <template for:each={displayedaccs} for:item="a">
+                <tr  key ={a.Id}>
+                    <td class="Color" scope="col" >
+                        <template if:false={a.IsEditable}>
+                            <div class="slds-truncate" style="display: flex; align-items: center;">
+                                <lightning-input type="checkbox" data-id={a.Id} onchange={handleRowSelect}></lightning-input>
+                                <a data-id={a.Id} onclick={navigateToRecord} style="margin-left: 2px;">{a.Name}</a>
+                            </div>
+                       </template>
+                       <template if:true={a.IsEditable}>
+                        <lightning-input type ="text" data-id ={a.Id} data-field ='Name' value ={a.Name} onchange ={handleFields}></lightning-input>
+                    </template>
+                    </td>
+                    <td class="Color" scope="col">
+                    <template if:false={a.IsEditable}>
+                    <div class="slds-truncate">{a.Phone}</div>
+                    </template>
+                    <template if:true={a.IsEditable}>
+                       <lightning-input type ="text" data-id ={a.Id} data-field ='Phone' value ={a.Phone} onchange ={handleFields}></lightning-input>
+                    </template>
+                    </td>
+                    <td class="Color" scope="col">
+                        <lightning-button label="Edit" variant="brand" data-id={a.Id} onclick={handleEditing}></lightning-button>
+                    </td>
+                    
+                </tr>
+                    <tr key ={a.Id}> 
+                        <td colspan="3">
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered tablecls">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="" scope="col" ><div class="slds-truncate">Name</div></th>
+                                <th class="" scope="col" ><div class="slds-truncate">Phone</div></th>
+                                <th class="" scope="col"></th>
+                            </tr>
+                            
+                        </thead>
+                        <tbody>
+                            <template for:each={a.Contacts} for:item="c" >
+                                <tr key={c.Id}>
+                                    <td class="Color" scope="col">
+                                        <template if:false={c.IsEditable}>
+                                        <div  class="slds-truncate"><lightning-icon  icon-name="standard:contact" size="xx-small" ></lightning-icon><a data-id={c.Id} onclick={navigateToRecord}>{c.Name}</a></div>
+                                        </template>
+                                        <template if:true={c.IsEditable}>
+                                            <lightning-input type ="text" data-id ={c.Id} data-field ='Name' value ={c.Name} onchange ={handleFields2}></lightning-input>
+                                        </template>
+                                </td>
+
+                                    <td class="Color" scope="col">
+                                        <template if:false={c.IsEditable}>
+                                        <div  class="slds-truncate">{c.Phone}</div>
+                                    </template>
+                                    <template if:true={c.IsEditable}>
+                                        <lightning-input type ="text" data-id ={c.Id} data-field ='Phone' value ={c.Phone} onchange ={handleFields2}></lightning-input>
+                                    </template>
+                                    </td>
+                                    
+                                    <td class="Color" scope="col">
+                                        <lightning-button label="Edit" data-id={c.Id} variant="brand" onclick={handleEditing2}></lightning-button>
+                                    </td>
+                                </tr>
+                                <template if:true={c.Opportunities}>         
+                               <tr key={c.Id}>
+                                <td colspan="3">  
+                                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered tablecls">
+                                        <thead>
+                                            <tr class="slds-line-height_reset" >
+                                                <th class="" scope="col">
+                                                    <div class="slds-truncate">Name</div></th>
+                                                <th class="" scope="col"><div class="slds-truncate">Phone</div></th>
+                                                <th class="" scope="col"></th>
+                                            </tr>
+                                            
+                                        </thead>
+                                        <tbody>
+                                            <template for:each={c.Opportunities} for:item="o">
+                                                <tr key={o.Id}>
+                                                    <td class="Color" scope="col" >
+                                                        <template if:false={o.IsEditable}>
+                                                        <div class="slds-truncate"><lightning-icon  icon-name="standard:opportunity" size="xx-small" ></lightning-icon><a data-id={o.Id} onclick={navigateToRecord}>{o.Name}</a></div>
+                                                    </template>
+                                                    <template if:true={o.IsEditable}>
+                                                        <lightning-input type ="text" data-id ={o.Id} data-field ='Name' value ={o.Name} onchange ={handleFields3}></lightning-input>
+
+                                                    </template>
+                                                    </td>
+                                                    <td class="Color" scope="col">
+                                                        <template if:false={o.IsEditable}>
+                                                        <div class="slds-truncate">{o.Phone}</div>
+                                                    </template>
+                                                    <template if:true={o.IsEditable}>
+                                                        <lightning-input type ="text" data-id ={o.Id} data-field ='Phone' value ={o.Phone} onchange ={handleFields3}></lightning-input>
+                                                    </template>
+                                                    </td>
+                                                    <td class="Color" scope="col">
+                                                        <lightning-button label="Edit" data-id={o.Id} variant="brand" onclick={handleEditing3}></lightning-button>
+                                                    </td>
+                                                </tr> 
+                                                <template if:true={o.Products}>
+                                                <tr key={o.Id}>
+                                                    <td colspan="2">
+                                                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered tablecls">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="" scope="col" ><div class="slds-truncate">Name</div></th>
+                                                                    <th class="" scope="col" ><div class="slds-truncate">Phone</div></th>
+                                                                    <th class="" scope="col"></th>
+                                                                </tr>
+                                                                
+                                                            </thead>
+                                                        <tbody>
+                                                            <template for:each={o.Products} for:item="po">
+                                                                <tr key={po.Id}>
+                                                                    <td class="Color" scope="col" >
+                                                                        <template if:false={po.IsEditable}>
+                                                                        <div class="slds-truncate"><lightning-icon  icon-name="standard:product" size="xx-small" ></lightning-icon><a data-id={po.Id} onclick={navigateToRecord}>{po.Name}</a></div>
+                                                                        </template>
+                                                                        <template if:true={po.IsEditable}>
+                                                                            <lightning-input type ="text" data-id ={po.Id} data-field ='Name' value ={po.Name} onchange ={handleFields4}></lightning-input>
+                                                                           </template>
+                                                                    </td>
+                                                                    <td class="Color" scope="col" >
+                                                                        <template if:false={po.IsEditable}>
+                                                                        <div class="slds-truncate">{po.Phone}</div>
+                                                                        </template>
+                                                                        <template if:true={po.IsEditable}>
+                                                                            <lightning-input type ="text" data-id ={po.Id} data-field ='Phone' value ={po.Phone} onchange ={handleFields4}></lightning-input>
+                                                                        </template>
+                                                                        </td>
+                                                                        <td class="Color" scope="col">
+                                                                            <lightning-button label="Edit" data-id={po.Id} variant="brand" onclick={handleEditing4}></lightning-button>
+                                                                        </td>
+                                                                    
+                                                                </tr>
+                                                                <template if:true={po.PriceBooks}>
+                                                                <tr key={po.Id}>
+                                                                    <td colspan="2">
+                                                                        <table class="slds-table table-hover slds-table_bordered slds-table_cell-buffer slds-table_resizable-cols ">
+                                                                            <thead>
+                                                                                <tr class="slds-line-height_reset">
+                                                                                    <th class="" scope="col" ><div class="slds-truncate">Name</div></th>
+                                                                                    <th class="" scope="col" ><div class="slds-truncate">Phone</div></th>
+                                                                                    <th class="" scope="col"></th>
+                                                                                </tr>
+                                                                                
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <template for:each={po.PriceBooks} for:item="pri">
+                                                                                    <tr key={pri.Id}>
+                                                                                        <td class="Color" scope="col" >
+                                                                                            <template if:false={pri.IsEditable}>
+                                                                                            <div class="slds-truncate"><lightning-icon  icon-name="standard:price_books" size="xx-small" ></lightning-icon><a data-id={pri.Id} onclick={navigateToRecord}>{pri.Name}</a></div>
+                                                                                            </template>
+                                                                                            <template if:true={pri.IsEditable}>
+                                                                                                <lightning-input type ="text" data-id ={pri.Id} data-field ='Name' value ={pri.Name} onchange ={handleFields5}></lightning-input>
+                                                                                               </template>
+                                                                                        </td>
+                                                                                        <td class="Color" scope="col">
+                                                                                            <template if:false={pri.IsEditable}>
+                                                                                            <div class="slds-truncate">{pri.Phone} </div>
+                                                                                        </template>
+                                                                                        <template if:true={pri.IsEditable}>
+                                                                                            <lightning-input type ="text" data-id ={pri.Id} data-field ='Phone' value ={pri.Phone} onchange ={handleFields5}></lightning-input>
+                                                                                        </template>
+                                                                                        </td>
+                                                                                        <td class="Color" scope="col">
+                                                                                            <lightning-button label="Edit" data-id={pri.Id} variant="brand" onclick={handleEditing5}></lightning-button>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </template>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                    
+                                                                </tr>
+                                                                </template>
+                                                            </template>
+                                                        </tbody>
+
+                                                        </table>
+                                                    </td>
+                                                   
+                                                </tr>
+                                            </template>   
+                                            </template>
+                                        
+                                        </tbody>
+                                    </table>
+                                </td> 
+                               </tr>
+                            </template> 
+                        </template>
+                        </tbody>
+                    </table>
+                </td>   
+               </tr>
+               <template if:true={a.view}>
+                <tr key={a.Id}>
+                    <td  scope="col">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lightning-button style="text-align: center;" label="ViewAll" variant="Base"  data-id={a.Id} onclick={handleViewAll}> </lightning-button>
+                </td>
+                </tr>
+            </template>
+            </template>
+        </tbody>
+       </table>  
+        </div>
+    </div>
+    <div style="text-align: center; padding: 30px;">
+    <template if:true ={SaveAll} >
+        <lightning-button style="padding-right: 10px;" label ="Save"  variant ='brand' onclick ={handleSaveButtonAll} ></lightning-button>
+        </template>
+        
+    <template if:true ={cancel} >
+            <lightning-button label ="Cancel"  variant ='brand' onclick ={handleCancel} ></lightning-button>
+    </template>
+    </div>
+    <div style="text-align: center;" class="pagination">
+                    <lightning-button-group>
+                        <lightning-button label="Previous" onclick={handlePrevious} disabled={disablePrevious}></lightning-button>
+                        <lightning-button label="Next" onclick={handleNext} disabled={disableNext}></lightning-button>
+                    </lightning-button-group>                
+    </div>          
+</lightning-card>
+</template>

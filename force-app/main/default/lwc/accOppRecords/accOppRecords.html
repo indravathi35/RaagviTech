@@ -1,0 +1,105 @@
+<template>
+    <lightning-input class="slds-p-left_xx-large" type="checkbox" label={checklabel} onchange={handleChange} ></lightning-input>
+    <template if:true={value}>
+            <lightning-card  title='Accounts'>
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr class="slds-line-height_reset slds-text-title_caps">
+                            <th  class="slds-is-resizable" scope="col">
+                                <div class="slds-truncate" title="Name">
+                                    Name
+                                </div>
+                            </th>
+                            <th  class="slds-is-resizable" scope="col">
+                                <div class="slds-truncate" title="Phone">
+                                   Phone
+                                </div>
+                            </th>
+                            <th  class="slds-is-resizable" scope="col">
+                                <div class="slds-truncate" title="Description">
+                                   Description
+                                </div>
+                            </th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template if:true={displayedaccs}>
+                            <template for:each={displayedaccs} for:item="Item">
+                                <tr key={Item.Id}>
+                                    <th scope="row" data-label="Name">
+                                        <div class="slds-truncate" title={Item.Name}>{Item.Name}</div>
+                                    </th>
+                                    <th scope="row" data-label="Phone">
+                                        <div class="slds-truncate" title={Item.Phone}>{Item.Phone}</div>
+                                    </th>
+                                    <th scope="row" data-label="Description">
+                                        <div class="slds-truncate" title={Item.Description}>{Item.Description}</div>
+                                    </th>
+                                </tr>
+                            </template>
+                        </template>
+                    </tbody>
+                </table>
+                <br/>
+                <div class="pagination">
+                    <lightning-button-group>
+                        <lightning-button label="Previous" onclick={handlePrevious1} disabled={disablePrevious1}></lightning-button>
+                        <lightning-button label="Next" onclick={handleNext1} disabled={disableNext1}></lightning-button>
+                    </lightning-button-group>
+                </div>
+                </lightning-card>
+                
+    </template>
+    <template if:false={value}>
+            <lightning-card  title='Opportunities'>
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr class="slds-line-height_reset slds-text-title_caps">
+                            <th  class="slds-is-resizable" scope="col">
+                                <div class="slds-truncate" title="Name">
+                                    Name
+                                </div>
+                            </th>
+                            <th  class="slds-is-resizable" scope="col">
+                                <div class="slds-truncate" title="Description">
+                                   Description
+                                </div>
+                            </th>
+                            <th  class="slds-is-resizable" scope="col">
+                                <div class="slds-truncate" title="Amount">
+                                   Amount
+                                </div>
+                            </th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template if:true={displayedopps}>
+                            <template for:each={displayedopps} for:item="Item">
+                                <tr key={Item.Id}>
+                                    <th scope="row" data-label="Name">
+                                        <div class="slds-truncate" title={Item.Name}>{Item.Name}</div>
+                                    </th>
+                                    <th scope="row" data-label="Description">
+                                        <div class="slds-truncate" title={Item.Description}>{Item.Description}</div>
+                                    </th>
+                                    <th scope="row" data-label="Amount">
+                                        <div class="slds-truncate" title={Item.Amount}>{Item.Amount}</div>
+                                    </th>
+                                </tr>
+                            </template>
+                        </template>
+                    </tbody>
+                </table>
+                <br/>
+                <div class="pagination">
+                    <lightning-button-group>
+                        <lightning-button label="Previous" onclick={handlePrevious2} disabled={disablePrevious2}></lightning-button>
+                        <lightning-button label="Next" onclick={handleNext2} disabled={disableNext2}></lightning-button>
+                    </lightning-button-group>
+                </div>
+                </lightning-card>
+                
+    </template>
+</template>
