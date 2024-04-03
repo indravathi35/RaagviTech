@@ -1,0 +1,15 @@
+.button-group-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+    
+
+.lightning-button {
+    margin-right: 8px;
+}
+
+.lightning-button-menu {
+    margin-left: 8px;
+}

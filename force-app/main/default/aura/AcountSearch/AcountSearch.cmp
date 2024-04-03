@@ -1,0 +1,22 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="AccountSearchController">
+    <aura:attribute name="Name" type="String"/>
+    <aura:attribute name="data" type="List"/>
+    <aura:attribute name="condata" type="List"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="concolumns" type="List"/>
+    <lightning:input label="AccountName" value="{!v.Name}"></lightning:input>
+    <lightning:button label="AccountSearch" onclick="{!c.handleAccountSearch}"></lightning:button>
+    <lightning:button label="ConatactSearch" onclick="{!c.contactSearch}"></lightning:button>
+    <lightning:datatable
+         keyField="Id"
+         data="{!v.data}"
+         columns="{!v.columns}"
+         hideCheckboxColumn="true">    
+    </lightning:datatable>
+    <lightning:datatable
+         keyField="Id"
+         data="{!v.condata}"
+         columns="{!v.concolumns}"
+         hideCheckboxColumn="true">    
+    </lightning:datatable>
+</aura:component>

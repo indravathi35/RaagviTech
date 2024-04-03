@@ -1,0 +1,78 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="HightlightPanelController">
+<aura:attribute name="recordId" type="String" />
+<aura:attribute name="accountId" type="String"/>
+<aura:attribute name="accountPhone" type="String"/>
+<aura:attribute name="accountowner" type="String"/>
+<aura:attribute name="accountName" type="String"/>
+<aura:attribute name="accountIndustry" type="String"/>
+<aura:attribute name="accountWebsite" type="String"/>
+<aura:attribute name="accountType" type="String"/>
+<aura:attribute name="buttonstate" type="Boolean" default="false"/>
+<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <lightning:card>
+    <div class="flexdesign">
+     <lightning:icon iconName="standard:account" ></lightning:icon>
+          <div style="padding-left: 10px;">
+           <p>Account</p>
+           <p style="font-weight: bold;">{!v.accountName} <lightning:icon iconName="utility:hierarchy" style="padding-left: 5px;" size="x-small"></lightning:icon></p>
+           </div> 
+           <div style="padding-left: 370px;">
+            <lightning:buttonStateful
+            labelWhenOff="Follow"
+            labelWhenOn="Following"
+            labelWhenHover="Unfollow"
+            iconNameWhenOff="utility:add"
+            iconNameWhenOn="utility:check"
+            iconNameWhenHover="utility:close"
+            state="{! v.buttonstate }"
+            onclick="{! c.handleClick }"
+        />
+        <lightning:buttonGroup>
+        <lightning:button label="Add Record" ></lightning:button>
+        <lightning:button label="Manage Life Support"></lightning:button>
+        <lightning:button label="New Note"></lightning:button>
+        <lightning:buttonMenu variant="border-filled">
+            <lightning:menuItem value="New Opportunity" label="New Opportunity" />
+                <lightning:menuItem value="ChangeOwner" label="ChangeOwner" />
+                <lightning:menuItem value="Submit for Approval" label="Submit for Approval" />
+                <lightning:menuItem value="Edit" label="Edit" />
+                <lightning:menuItem value="Delete" label="Delete" />
+                <lightning:menuItem value="Sharing" label="Sharing" />
+                <lightning:menuItem value="Change Record Type" label="Change Record Type" />
+                <lightning:menuItem value="View Account Hierarchy" label="View Account Hierarchy" />
+                <lightning:menuItem value="Check for New Data " label="Delete" />
+                <lightning:menuItem value="View Website" label="View Website" />
+        </lightning:buttonMenu>
+        </lightning:buttonGroup>
+        </div>
+    </div>
+    <div class="flexdesign2">
+        <div>
+        <p >Type</p>
+        <p>{!v.accountType}</p>
+        </div>
+        <div>
+        <p >Phone</p>
+        <p ><a>{!v.accountPhone}</a></p>
+        </div>
+        <div >
+        <p >Website</p>
+        <p ><a>{!v.accountWebsite}</a></p>
+        </div>
+        <div >
+        <p >AccountOwner</p>
+        <p ><a>{!v.accountowner}</a></p>
+        </div>
+        <div >
+        <p >AccountSite</p>
+        <p ><a>{!v.accountWebsite}</a></p>
+       </div>
+       <div >
+        <p >Industry</p>
+        <p ><a>{!v.accountIndustry}</a></p>
+       </div>
+    </div>
+
+    </lightning:card>
+
+</aura:component>

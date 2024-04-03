@@ -1,0 +1,13 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="ContactCreateController">
+    <aura:attribute name="contact" type="Object" default="{'sobjectType': 'Contact'}" />
+    <aura:attribute name="Name" type="String"/>
+    <aura:attribute name="Phone" type="String"/>
+    <aura:attribute name="Email" type="String"/>
+    <lightning:input label="Name" value="{!v.Name}"></lightning:input>
+    <lightning:input label="Phone" value="{!v.Phone}" ></lightning:input>
+    <lightning:input label="Email" value="{!v.Email}" ></lightning:input>
+    <div>
+        <lightning:button label="CreateContact" onclick="{!c.HandleCreate}"></lightning:button>
+    </div>
+
+</aura:component>
